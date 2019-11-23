@@ -28,47 +28,44 @@
   </div>
 
   <div class="container">
-    <div class="card">
-      <strong><div class="card-header">Table Reservation</div></strong>
-      <div class="card-body">
-        <form>
-          <div class="form-group">
-            <strong><label for="Name">Name</label></strong>
-            <input type="text" class="form-control" id="name">
-          </div>
-          <div class="form-group">
-            <strong><label for="Phone Number">Phone Number</label></strong>
-            <input type="text" class="form-control" id="phoneNumber">
-          </div>
-          <div class="form-group">
-            <strong><label for="Email">Email</label></strong>
-            <input type="email" class="form-control" id="email">
-          </div>
-          <div class="form-group">
-            <strong><label for="Unique ID">Unique ID</label></strong>
-            <input type="text" class="form-control" id="id">
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+
+    <form>
+      <div class="form-group">
+        <strong><label for="name">Name</label></strong>
+        <input type="text" class="form-control" id="name">
       </div>
-    </div>
+      <div class="form-group">
+        <strong><label for="phoneNumber">Phone Number</label></strong>
+        <input type="text" class="form-control" id="phoneNumber">
+      </div>
+      <div class="form-group">
+        <strong><label for="email">Email</label></strong>
+        <input type="email" class="form-control" id="email">
+      </div>
+      <div class="form-group">
+        <strong><label for="id">Unique ID</label></strong>
+        <input type="text" class="form-control" id="id">
+      </div>
+      <button type="submit" class="btn btn-primary" id="add-btn">Submit</button>
+    </form>
+
   </div>
 
   <script type="text/javascript">
 
     $("#add-btn").on("click", function (event) {
       event.preventDefault();
-      var newReservation = {
+      const newReservation = {
         name: $("#name").val().trim(),
         phoneNumber: $("#phoneNumber").val().trim(),
         email: $("#email").val().trim(),
         id: $("#id").val().trim()
       };
 
+      $.post("/api/reservations", newReservation)
+        .then(function(data) {
+          console.log("Make.html", data);
 
-      $.post("/api/reservation", newReservation)
-        .then(function (data) {
-          console.log("add.html", data);
           alert("Adding reservation...");
         });
     });
