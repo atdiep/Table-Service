@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/atdiep/Table-Service/issues"
   },
-  "homepage": "https://github.com/atdiep/Table-Service#readme"
+  "homepage": "https://github.com/atdiep/Table-Service#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {}
 }

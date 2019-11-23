@@ -1,4 +1,4 @@
-const smapleReservations = [
+const sampleReservations = [
     {
         "Name" : "John",
         "Phone Number" : "5555555",
