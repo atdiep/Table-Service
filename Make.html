@@ -52,8 +52,8 @@
   </div>
 
   <script type="text/javascript">
-    
-    $("#add-btn").on("click", function(event) {
+
+    $("#add-btn").on("click", function (event) {
       event.preventDefault();
       const newReservation = {
         name: $("#name").val().trim(),
@@ -65,12 +65,15 @@
       $.post("/api/reservations", newReservation)
         .then(function(data) {
           console.log("Make.html", data);
+
           alert("Adding reservation...");
         });
     });
   </script>
-
-
+<br>
+<footer>
+  <a style="margin-left: 130px" href="">API Table Link</a> | <a href="">API Wait List</a>
+</footer>
 
 </body>
 
