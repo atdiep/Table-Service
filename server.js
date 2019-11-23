@@ -2,6 +2,8 @@
 // =============================================================
 const express = require("express");
 const path = require("path");
+//Count site visits
+const visitCounter = require("express-visit-counter");
 
 // Sets up the Express App
 // =============================================================
@@ -12,14 +14,24 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const reservations = [];
+//Count site visits
+app.use(visitCounter.initialize());
 
+const reservations = [];
 const waitList = [];
 
 // Basic route that sends the user first to the AJAX Page
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "Home.html"));
 });
+let visitCounter2 = require('express-visit-counter').Loader;
+
+app.get('/count', async function (req, res, next) {
+    let visitorsAltogether = await visitCounter2.getCount();
+
+    res.json(visitorsAltogether)
+});
+
 
 app.get("/make", function (req, res) {
     res.sendFile(path.join(__dirname, "Make.html"));

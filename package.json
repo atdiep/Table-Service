@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/atdiep/Table-Service#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "express-visit-counter": "^1.0.1"
   },
   "devDependencies": {}
 }
