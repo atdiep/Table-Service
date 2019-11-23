@@ -27,27 +27,31 @@
   </div>
 
   <div class="container">
+    <div class="card">
+      <div class="card-header">Table Reservation</div>
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <strong><label for="name">Name</label></strong>
+            <input type="text" class="form-control" id="name">
+          </div>
+          <div class="form-group">
+            <strong><label for="phoneNumber">Phone Number</label></strong>
+            <input type="text" class="form-control" id="phoneNumber">
+          </div>
+          <div class="form-group">
+            <strong><label for="email">Email</label></strong>
+            <input type="email" class="form-control" id="email">
+          </div>
+          <div class="form-group">
+            <strong><label for="id">Unique ID</label></strong>
+            <input type="text" class="form-control" id="id">
+          </div>
+          <button type="submit" class="btn btn-primary" id="add-btn">Submit</button>
+        </form>
 
-    <form>
-      <div class="form-group">
-        <strong><label for="name">Name</label></strong>
-        <input type="text" class="form-control" id="name">
       </div>
-      <div class="form-group">
-        <strong><label for="phoneNumber">Phone Number</label></strong>
-        <input type="text" class="form-control" id="phoneNumber">
-      </div>
-      <div class="form-group">
-        <strong><label for="email">Email</label></strong>
-        <input type="email" class="form-control" id="email">
-      </div>
-      <div class="form-group">
-        <strong><label for="id">Unique ID</label></strong>
-        <input type="text" class="form-control" id="id">
-      </div>
-      <button type="submit" class="btn btn-primary" id="add-btn">Submit</button>
-    </form>
-
+    </div>
   </div>
 
   <script type="text/javascript">
@@ -62,17 +66,17 @@
       };
 
       $.post("/api/reservations", newReservation)
-        .then(function(data) {
+        .then(function (data) {
           console.log("Make.html", data);
 
           alert("Adding reservation...");
         });
     });
   </script>
-<br>
-<footer>
-  <a style="margin-left: 130px" href="">API Table Link</a> | <a href="">API Wait List</a>
-</footer>
+  <br>
+  <footer>
+    <a style="margin-left: 130px" href="">API Table Link</a> | <a href="">API Wait List</a>
+  </footer>
 
 </body>
 
