@@ -12,21 +12,14 @@ const PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const sampleReservations = [
+const reservations = [
     {
-        name: "John",
-        phoneNumber: "5555555",
-        email: "email@email.com",
-        id: 42,
-
+     
     }];
 
-const sampleWaitList = [
+const waitList = [
     {
-    name: "Jim",
-    phoneNumber: "4444444",
-    email: "jim@email.com",
-    id: 53,
+    
 }];
 
 // Basic route that sends the user first to the AJAX Page
@@ -43,27 +36,28 @@ app.get("/view", function (req, res) {
 });
 
 app.get("/api/reservations", function (req, res) {
-    return res.json(sampleReservations);
+    return res.json(reservations);
 });
 
 app.get("/api/waitlist", function (req, res) {
-    return res.json(sampleWaitList);
+    return res.json(waitList);
 });
 
-
-app.get("/api/reservations/:reservation", function (req, res) {
-    var chosen = req.params.sampleReservations;
-
-    console.log(chosen);
-
-    for (var i = 0; i < sampleReservations.length; i++) {
-        if (chosen === sampleReservations[i].routeName) {
-            return res.json(sampleReservations[i]);
-        }
-    }
-
-    return res.json(false);
-});
+app.post("/api/reservations", function(req, res) {
+    // req.body hosts is equal to the JSON post sent from the user
+    // This works because of our body parsing middleware
+    var newReservation = req.body;
+  
+    // Using a RegEx Pattern to remove spaces from newCharacter
+    // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+    newReservation.routeName = newReservation.name.replace(/\s+/g, "").toLowerCase();
+  
+    console.log(newReservation);
+  
+    reservations.push(newReservation);
+  
+    res.json(newReservation);
+  });
 
 
 app.listen(PORT, function () {
