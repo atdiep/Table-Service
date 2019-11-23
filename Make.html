@@ -28,32 +28,35 @@
   </div>
 
   <div class="container">
-
-    <form>
-      <div class="form-group">
-        <strong><label for="Name">Name</label></strong>
-        <input type="text" class="form-control" id="name">
+    <div class="card">
+      <strong><div class="card-header">Table Reservation</div></strong>
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <strong><label for="Name">Name</label></strong>
+            <input type="text" class="form-control" id="name">
+          </div>
+          <div class="form-group">
+            <strong><label for="Phone Number">Phone Number</label></strong>
+            <input type="text" class="form-control" id="phoneNumber">
+          </div>
+          <div class="form-group">
+            <strong><label for="Email">Email</label></strong>
+            <input type="email" class="form-control" id="email">
+          </div>
+          <div class="form-group">
+            <strong><label for="Unique ID">Unique ID</label></strong>
+            <input type="text" class="form-control" id="id">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
       </div>
-      <div class="form-group">
-        <strong><label for="Phone Number">Phone Number</label></strong>
-        <input type="text" class="form-control" id="phoneNumber">
-      </div>
-      <div class="form-group">
-        <strong><label for="Email">Email</label></strong>
-        <input type="email" class="form-control" id="email">
-      </div>
-      <div class="form-group">
-        <strong><label for="Unique ID">Unique ID</label></strong>
-        <input type="text" class="form-control" id="id">
-      </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-
+    </div>
   </div>
 
   <script type="text/javascript">
-    
-    $("#add-btn").on("click", function(event) {
+
+    $("#add-btn").on("click", function (event) {
       event.preventDefault();
       var newReservation = {
         name: $("#name").val().trim(),
@@ -64,14 +67,16 @@
 
 
       $.post("/api/reservation", newReservation)
-        .then(function(data) {
+        .then(function (data) {
           console.log("add.html", data);
           alert("Adding reservation...");
         });
     });
   </script>
-
-
+<br>
+<footer>
+  <a style="margin-left: 130px" href="">API Table Link</a> | <a href="">API Wait List</a>
+</footer>
 
 </body>
 
