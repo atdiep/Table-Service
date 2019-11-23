@@ -29,31 +29,84 @@
         <div class="card-header font-weight-bold">
           Current Reservations
         </div>
+
+        <div class="curRes card-body py-3"></div>
         <div class="card-body py-3" id="reservations">
-          <div class="card-text py-1">
-            1 | 123
-          </div>
-          <hr>
-          <div class="card-text py-1">
-              1 | 123
-            </div>
-        </div>
+          
+  </div>
       </div>
 
       <div class="card" style="margin-top: 30px">
         <div class="card-header font-weight-bold">
           Waiting List
-        </div>
-        <div class="card-body py-3" id="waiting">
-            <div class="card-text py-1">
-              1 | 123
-            </div>
-            <hr>
-            <div class="card-text py-1">
-                1 | 123
-              </div>
-          </div>
+        </div>cjsbranch
+        <div class="waitList card-body py-3"></div>
+
       </div>
+      <script type="text/javascript">
+
+  const stringArray = [];
+
+// user post table res to api
+// 1. .get to api/reservations to get reservations
+function getReservations() {
+    $.get("/api/reservations")
+        .then((resArray) => {
+            buildResList(resArray);
+        })
+};
+// 2. create reservation list
+function buildResList(resArray) {
+    let resNumber = 1;
+    resArray.forEach(reservation => {
+      console.log(reservation)
+       let curReservation = createHTML(reservation, resNumber);
+       stringArray.push(curReservation);
+       resNumber++;
+    })
+    $(".curRes").append(stringArray);
+
+};
+
+function createHTML(reservation, resNumber) {
+    return `<div class="card-text py-1">
+            ${resNumber} | ${reservation.id}
+          </div>`
+
+}
+
+function getWaitList() {
+    $.get("/api/waitlist")
+        .then((waitArray) => {
+          console.log(waitArray);
+            buildWaitList(waitArray);
+        })
+};
+// 2. create reservation list
+function buildWaitList(waitArray) {
+    let resNumber = 1;
+    waitArray.forEach(reservation => {
+      console.log(reservation)
+       let curReservation = createWaitHTML(reservation, resNumber);
+       stringArray.push(curReservation);
+       resNumber++;
+    })
+    $(".waitList").append(stringArray);
+
+};
+
+function createWaitHTML(reservation, resNumber) {
+    return `<div class="card-text py-1">
+            ${resNumber} | ${reservation.id}
+          </div>`
+
+}
+
+
+
+getReservations();
+getWaitList();
+</script>
 
       <footer style="margin-top: 30px">
           <a href="" id="clear">Clear Table</a> | <a href="">API Table Link</a> | <a href="">API Wait List</a>
